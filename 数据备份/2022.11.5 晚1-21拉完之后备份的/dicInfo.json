@@ -1,0 +1,214 @@
+[{
+  "_id": {
+    "$oid": "636156d46f275a27a07ba277"
+  },
+  "content": "建华",
+  "type": "start"
+},{
+  "_id": {
+    "$oid": "636156da6f275a27a07ba278"
+  },
+  "content": "镇东",
+  "type": "start"
+},{
+  "_id": {
+    "$oid": "636156df6f275a27a07ba279"
+  },
+  "content": "雄飞",
+  "type": "start"
+},{
+  "_id": {
+    "$oid": "6361ed00171a19c49b5e6acd"
+  },
+  "content": "C10",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed05171a19c49b5e6ace"
+  },
+  "content": "C15",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed0c171a19c49b5e6acf"
+  },
+  "content": "C20",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed15171a19c49b5e6ad0"
+  },
+  "content": "C25",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed1c171a19c49b5e6ad1"
+  },
+  "content": "C30",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed23171a19c49b5e6ad2"
+  },
+  "content": "C35",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed2a171a19c49b5e6ad3"
+  },
+  "content": "C40",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed31171a19c49b5e6ad4"
+  },
+  "content": "C45",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed46171a19c49b5e6ad5"
+  },
+  "content": "C10细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed4e171a19c49b5e6ad6"
+  },
+  "content": "C15细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed58171a19c49b5e6ad7"
+  },
+  "content": "C20细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed61171a19c49b5e6ad8"
+  },
+  "content": "C25细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed68171a19c49b5e6ad9"
+  },
+  "content": "C30细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed6f171a19c49b5e6ada"
+  },
+  "content": "C40细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ed78171a19c49b5e6adc"
+  },
+  "content": "C45细石",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6361ee86171a19c49b5e6ade"
+  },
+  "content": "春晖园",
+  "type": "end",
+  "content1": "建华"
+},{
+  "_id": {
+    "$oid": "6361ee93171a19c49b5e6adf"
+  },
+  "content": "上库建材",
+  "type": "end",
+  "content1": "建华"
+},{
+  "_id": {
+    "$oid": "6361ef09171a19c49b5e6ae4"
+  },
+  "content": "东鲁岗",
+  "type": "end",
+  "content1": "建华"
+},{
+  "_id": {
+    "$oid": "6361ef71171a19c49b5e6ae6"
+  },
+  "content": "东廉良-镇东",
+  "type": "end",
+  "content1": "镇东"
+},{
+  "_id": {
+    "$oid": "6361efbe171a19c49b5e6aea"
+  },
+  "content": "东康庄-镇东",
+  "type": "end",
+  "content1": "镇东"
+},{
+  "_id": {
+    "$oid": "6361f095171a19c49b5e6aee"
+  },
+  "content": "东后营-镇东",
+  "type": "end",
+  "content1": "镇东"
+},{
+  "_id": {
+    "$oid": "6361f0a8171a19c49b5e6aef"
+  },
+  "content": "朝阳北大街-镇东",
+  "type": "end",
+  "content1": "镇东"
+},{
+  "_id": {
+    "$oid": "6361f0b6171a19c49b5e6af0"
+  },
+  "content": "后辛庄-镇东",
+  "type": "end",
+  "content1": "镇东"
+},{
+  "_id": {
+    "$oid": "63621dd1171a19c49b5e6afb"
+  },
+  "content": "新能源风电长城园",
+  "type": "end",
+  "content1": "建华"
+},{
+  "_id": {
+    "$oid": "63647651171a19c49b5e6b6b"
+  },
+  "content": "东康庄王宋庄",
+  "type": "end",
+  "content1": "建华"
+},{
+  "_id": {
+    "$oid": "63647ba1171a19c49b5e6b6d"
+  },
+  "content": "康诚锋尚公寓郭",
+  "content1": "建华",
+  "type": "end"
+},{
+  "_id": {
+    "$oid": "6364bd0f171a19c49b5e6b7d"
+  },
+  "content": "徐庄徐河桥",
+  "content1": "建华",
+  "type": "end"
+},{
+  "_id": {
+    "$oid": "6364d4ec171a19c49b5e6b82"
+  },
+  "content": "C35P6",
+  "content1": "",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6364d7f8171a19c49b5e6b85"
+  },
+  "content": "C35P8",
+  "content1": "",
+  "type": "type"
+},{
+  "_id": {
+    "$oid": "6364e28f171a19c49b5e6b87"
+  },
+  "content": "前卫路小学百楼分校",
+  "content1": "镇东",
+  "type": "end"
+}]
