@@ -30,6 +30,10 @@
                 <div class="icon"></div>
                 <div class="text">各搅拌站车次方量统计</div>
             </div>
+            <div @click="moneyStatic" :class="moneyVisible">
+                <div class="icon"></div>
+                <div class="text">财务统计</div>
+            </div>
         </div>
     </div>
 </template>
@@ -39,6 +43,11 @@
 export default {
     name: 'carBossMainWindow',
     methods: {
+        moneyStatic() {
+            this.$router.push({
+                name: "moneyStatic"
+            })
+        },
         //各搅拌站车次方量统计
         startLocationStatic() {
             this.$router.push({
@@ -113,7 +122,17 @@ export default {
     },
     data() {
         return {
-            UserInfo: {}
+            UserInfo: {},
+            moneyVisible: 'hiddenStyle'
+        }
+    },
+    activated() {
+        let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
+        //alert(JSON.stringify(user))
+        if (user.UserName === 'ghj') {
+            this.moneyVisible = ''
+        } else {
+            this.moneyVisible = 'hiddenStyle'
         }
     },
     mounted() {
@@ -122,9 +141,25 @@ export default {
         if (str.length > 1) {
             //传参跳转过来的
             let userName = str[1].split("/")[0]
+
+            //alert(JSON.stringify(userName))
+
+            if (userName === 'ghj') {
+                this.moneyVisible = ''
+            } else {
+                this.moneyVisible = 'hiddenStyle'
+            }
             this.getUserInfo(userName);
         } else {
             let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
+
+            //alert(JSON.stringify(user))
+
+            if (user.UserName === 'ghj') {
+                this.moneyVisible = ''
+            } else {
+                this.moneyVisible = 'hiddenStyle'
+            }
             this.UserInfo = user
         }
     }
@@ -132,6 +167,8 @@ export default {
 </script>
   
 <style scoped>
-
+.hiddenStyle {
+    display: none !important;
+}
 </style>
   

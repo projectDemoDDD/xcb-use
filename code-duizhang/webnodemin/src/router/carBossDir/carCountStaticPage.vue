@@ -113,17 +113,31 @@ export default {
                 item.items = [...item.itemsMap.values()]
             })
 
-            map.set('合计', {
+            // map.set('合计', {
+            //     sum1: sumCount,
+            //     sum2: sumFangliang,
+            //     project: '合计',
+            //     projectName: `合计`
+            // })
+
+            this.list = [...map.values()]
+
+            this.list.sort((p1, p2) => {
+                return p2.sum2 - p1.sum2
+            })
+
+            this.list.push({
                 sum1: sumCount,
                 sum2: sumFangliang,
                 project: '合计',
                 projectName: `合计`
             })
 
-            this.list = [...map.values()]
-
         },
         refresh() {
+
+
+            this.$store.commit('showLoading')
 
             let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
             let cars = [];
@@ -148,17 +162,21 @@ export default {
                     this.$handleRequest(info.data).then(
                         sucess => {
                             this.groupTransInfo(sucess);
+                            this.$store.commit('hideLoading')
                         },
                         fail => {
                             console.log(`fail:${fail}`)
+                            this.$store.commit('hideLoading')
                         }
                     )
                 },
                     (fail) => {
                         console.log(fail)
+                        this.$store.commit('hideLoading')
                     })
                 .catch((err) => {
                     console.log(`网络请求超时！${err}`);
+                    this.$store.commit('hideLoading')
                 });
         }
     },
@@ -172,7 +190,7 @@ export default {
     mounted() {
         this.refresh();
     },
-    activated(){
+    activated() {
         this.refresh();
     }
 }

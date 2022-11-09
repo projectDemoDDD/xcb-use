@@ -1,0 +1,267 @@
+[{
+  "_id": {
+    "$oid": "636610dc6a33d572b3f1ab42"
+  },
+  "recordTime": "2022/11/5 15:29:33",
+  "name": "韩庆民",
+  "content": "运费",
+  "project": "韩庆民微信转来卖灰53方16960，对方回扣530，韩庆民工资9640，还剩8790",
+  "money": "8970",
+  "type": "in",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "636611006a33d572b3f1ab43"
+  },
+  "recordTime": "2022/11/5 15:30:09",
+  "name": "",
+  "content": "运费",
+  "project": "郭汉军微信转来3万5",
+  "money": "35000",
+  "type": "in",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "63663faa6a33d572b3f1ab5c"
+  },
+  "recordTime": "2022/11/5 18:49:14",
+  "name": "于国红",
+  "carNumber": "",
+  "content": "工资",
+  "project": "9月份工资",
+  "money": "6600",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "636640356a33d572b3f1ab5e"
+  },
+  "recordTime": "2022/11/5 18:51:34",
+  "name": "崔惯然",
+  "carNumber": "",
+  "content": "借支",
+  "project": "借工资",
+  "money": "2000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "636640706a33d572b3f1ab5f"
+  },
+  "recordTime": "2022/11/5 18:52:33",
+  "name": "方世杰",
+  "carNumber": "",
+  "content": "借支",
+  "project": "借支工资",
+  "money": "2000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "636647d26a33d572b3f1ab62"
+  },
+  "recordTime": "2022/11/5 19:24:03",
+  "name": "郑博",
+  "carNumber": "5486车",
+  "content": "修车",
+  "project": "粗滤410规格1个150元，精滤2个200",
+  "money": "350",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "636648e26a33d572b3f1ab63"
+  },
+  "recordTime": "2022/11/5 19:28:35",
+  "name": "诚实汽车",
+  "carNumber": "",
+  "content": "车贷还款",
+  "project": "保定联润汽车贸易有限公司1004 0145 0161还款账号10月份郭建车贷还款已截图发给杨智",
+  "money": "30000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 5
+},{
+  "_id": {
+    "$oid": "63672914d341d055356a7321"
+  },
+  "recordTime": "2022/11/6 11:25:09",
+  "name": "郭艳",
+  "carNumber": "",
+  "content": "信用卡还款",
+  "project": "郭艳还款平安信用卡",
+  "money": "200",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 6
+},{
+  "_id": {
+    "$oid": "63674696d341d055356a7323"
+  },
+  "recordTime": "2022/11/6 13:31:03",
+  "name": "马东升",
+  "content": "道路费收入",
+  "project": "收到马东升转到郭艳邮政5千",
+  "money": "5000",
+  "type": "in",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 6
+},{
+  "_id": {
+    "$oid": "636746bbd341d055356a7324"
+  },
+  "recordTime": "2022/11/6 13:31:40",
+  "name": "牟秀棋",
+  "carNumber": "",
+  "content": "借支",
+  "project": "借支工资",
+  "money": "4000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 6
+},{
+  "_id": {
+    "$oid": "6367745ed341d055356a7327"
+  },
+  "recordTime": "2022/11/6 16:46:24",
+  "name": "贺丙乾",
+  "carNumber": "",
+  "content": "借支",
+  "project": "借支",
+  "money": "2000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 6
+},{
+  "_id": {
+    "$oid": "636915f1b600f359df1034e8"
+  },
+  "recordTime": "2022/11/7 22:28:02",
+  "name": "罗山",
+  "carNumber": "8126",
+  "content": "送礼",
+  "project": "中午11点半送到的西苑小区恒祥大街李庄街路口，李庄街11月6号下午2点半左右8126车在长城大街往裕华路交叉口方向走被5大队查住，当时不让走，打了电话放行了，让过去找5对魏建强带一条烟",
+  "money": "210",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 7
+},{
+  "_id": {
+    "$oid": "636917e3b600f359df1034e9"
+  },
+  "recordTime": "2022/11/7 22:36:19",
+  "name": "贺丙乾",
+  "carNumber": " 5842",
+  "content": "修车",
+  "project": "重车7号晚上8点21在北三环668-27号换新轮胎",
+  "money": "1250",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 7
+},{
+  "_id": {
+    "$oid": "6369b44c77f66e853fe0c42e"
+  },
+  "recordTime": "2022/11/8 9:43:40",
+  "name": "马东升",
+  "content": "借款收入",
+  "project": "收到马东升转到郭艳邮政",
+  "money": "10000",
+  "type": "in",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 8
+},{
+  "_id": {
+    "$oid": "6369b4ac77f66e853fe0c42f"
+  },
+  "recordTime": "2022/11/8 9:45:17",
+  "name": "栗学义",
+  "carNumber": "",
+  "content": "借支",
+  "project": "借支工资",
+  "money": "3000",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 8
+},{
+  "_id": {
+    "$oid": "6369e53777f66e853fe0c432"
+  },
+  "recordTime": "2022/11/8 13:12:23",
+  "name": "韩庆民",
+  "carNumber": "7741",
+  "content": "修车",
+  "project": "前面两个灯",
+  "money": "59.9",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 8
+},{
+  "_id": {
+    "$oid": "6369e6ba77f66e853fe0c433"
+  },
+  "recordTime": "2022/11/8 13:18:50",
+  "name": "韩庆民",
+  "carNumber": "7741",
+  "content": "罚款",
+  "project": "10月20号罚款报销",
+  "money": "10",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 8
+},{
+  "_id": {
+    "$oid": "6369eb9a77f66e853fe0c434"
+  },
+  "recordTime": "2022/11/8 13:39:38",
+  "name": "郭艳",
+  "carNumber": "",
+  "content": "生活支出",
+  "project": "11月6号肉85，8号早饭12",
+  "money": "97",
+  "type": "out",
+  "isAdd": true,
+  "YY": 2022,
+  "MM": 11,
+  "DD": 8
+}]

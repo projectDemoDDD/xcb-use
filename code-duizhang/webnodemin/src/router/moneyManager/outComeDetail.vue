@@ -6,7 +6,7 @@
                 <div>日期</div>
                 <div>姓名</div>
                 <div>车号</div>
-                <div>内容</div>
+                <div>类别</div>
                 <div>事项</div>
                 <div>出账</div>
                 <div>操作</div>

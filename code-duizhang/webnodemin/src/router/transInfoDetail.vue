@@ -66,21 +66,34 @@
                     <div>{{ item.type }}</div>
                 </div>
                 <div class="cell" :class="scondContentVisibleCompute">
-                    <div>{{ item.leaveStationTime.substring(9) }}</div>
+                    <div>
+                        {{ item.leaveStationTime === '' || item.leaveStationTime === undefined ? '' :
+                                item.leaveStationTime.substring(9)
+                        }}</div>
                 </div>
                 <div class="cell" :class="scondContentVisibleCompute">
-                    <div>{{ item.arrivalTime.substring(9) }}</div>
+                    <div>{{ item.arrivalTime === '' || item.arrivalTime === undefined ? '' :
+                            item.arrivalTime.substring(9)
+                    }}</div>
                 </div>
 
 
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.startOffTime.substring(9) }}</div>
+                    <div>{{ item.startOffTime === '' || item.startOffTime === undefined ? '' :
+                            item.startOffTime.substring(9)
+                    }}</div>
+                    <!-- <div>{{ item.startOffTime.substring(9) }}</div> -->
                 </div>
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.offCompleteTime.substring(9) }}</div>
+                    <div>{{ item.offCompleteTime === '' || item.offCompleteTime === undefined ? '' :
+                            item.offCompleteTime.substring(9)
+                    }}</div>
+                    <!-- <div>{{ item.offCompleteTime.substring(9) }}</div> -->
                 </div>
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.backTime.substring(9) }}</div>
+                    <div>{{ item.backTime === '' || item.backTime === undefined ? '' : item.backTime.substring(9) }}
+                    </div>
+                    <!-- <div>{{ item.backTime.substring(9) }}</div> -->
                 </div>
 
             </div>
@@ -111,6 +124,9 @@ export default {
             console.log(this.displayCurrentIndex)
         },
         refresh() {
+
+            this.$store.commit('showLoading')
+
             let where = {
                 startYear: this.$route.query.year,
                 startMonth: this.$route.query.month,
@@ -126,17 +142,20 @@ export default {
                     this.$handleRequest(info.data).then(
                         sucess => {
                             this.list = sucess
+                            this.$store.commit('hideLoading')
                         },
                         fail => {
-
+                            this.$store.commit('hideLoading')
                         }
                     )
                 },
                     (fail) => {
                         console.log(fail)
+                        this.$store.commit('hideLoading')
                     })
                 .catch((err) => {
                     console.log(`网络请求超时！${err}`);
+                    this.$store.commit('hideLoading')
                 });
         }
     },

@@ -5,11 +5,13 @@
                 <div>{{ item.projectName }}</div>
                 <ul>
                     <li>
-                        <div>内容</div>
+                        <div>类别</div>
+                        <div>数量</div>
                         <div>金额</div>
                     </li>
-                    <li v-for="next in item.items">
+                    <li v-for="next in item.items" @click="detailEnd(item, next)">
                         <div>{{ next.projectName }}</div>
+                        <div>{{ next.count }}</div>
                         <div>{{ next.sum }}</div>
                     </li>
                 </ul>
@@ -27,11 +29,23 @@ export default {
         }
     },
     methods: {
+        detailEnd(item, next) {
+            this.$router.push({
+                name: 'detailView',
+                query: {
+                    type: item.type,
+                    projectName: next.projectName
+                }
+            })
+        },
         getList() {
+
             //定义条件
             let where = {
-                MM: this.$route.query.month
+                MM: parseInt(this.$route.query.month)
             };
+
+
             //发送请求
             this.$http
                 .get(`/moneyDetailInfoQuerys?where=${JSON.stringify(where)}`)
@@ -39,6 +53,7 @@ export default {
                     //服务器只要接到请求就会返回200成功
                     this.$handleRequest(info.data).then(
                         success => {
+
                             this.list = [];
                             let map = new Map();
 
@@ -53,12 +68,14 @@ export default {
 
                                         let project = obj.itemsMap.get(element.content)
                                         project.sum = parseFloat(project.sum) + parseFloat(element.money)
+                                        project.count = project.count + 1
 
                                     } else {
 
                                         let project = {
                                             projectName: element.content,
-                                            sum: element.money
+                                            sum: element.money,
+                                            count: 1
                                         }
                                         obj.itemsMap.set(element.content, project);
                                     }
@@ -76,12 +93,14 @@ export default {
 
                                         let project = obj.itemsMap.get(element.content)
                                         project.sum = parseFloat(project.sum) + parseFloat(element.money)
+                                        project.count = project.count + 1
 
                                     } else {
 
                                         let project = {
                                             projectName: element.content,
-                                            sum: element.money
+                                            sum: element.money,
+                                            count: 1
                                         }
                                         obj.itemsMap.set(element.content, project);
                                     }
@@ -95,6 +114,7 @@ export default {
 
                             map.forEach(key => {
                                 let projectName = ''
+                                let type = key.type
                                 if (key.type === 'in') projectName = '收入'
                                 else projectName = '支出'
 
@@ -104,6 +124,12 @@ export default {
                                     sumMoney = parseFloat(sumMoney) + parseFloat(nextKey.sum)
                                     nextList.push(nextKey)
                                 })
+
+
+                                nextList.sort((p1, p2) => {
+                                    return p2.sum - p1.sum
+                                })
+
                                 nextList.push({
                                     projectName: '合计',
                                     sum: sumMoney
@@ -111,7 +137,8 @@ export default {
 
                                 this.list.push({
                                     projectName: projectName,
-                                    items: nextList
+                                    items: nextList,
+                                    type: type
                                 })
                             })
 

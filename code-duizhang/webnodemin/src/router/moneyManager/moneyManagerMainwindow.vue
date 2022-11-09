@@ -34,22 +34,22 @@
                 <div class="icon"></div>
                 <div class="text" @click="moneyStatic">财务统计</div>
             </div>
-            <div @click="carStateView">
+            <!-- <div @click="carStateView">
                 <div class="icon"></div>
                 <div class="text">车辆状态统计</div>
             </div>
             <div @click="carCountFangliangStatic">
                 <div class="icon"></div>
                 <div class="text">车次方量统计</div>
-            </div>
+            </div> -->
             <div @click="dataEditor">
                 <div class="icon"></div>
                 <div class="text">数据维护</div>
             </div>
-            <div @click="startLocationStatic">
+            <!-- <div @click="startLocationStatic">
                 <div class="icon"></div>
                 <div class="text">各搅拌站车次方量统计</div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

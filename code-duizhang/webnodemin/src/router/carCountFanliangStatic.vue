@@ -94,17 +94,18 @@ export default {
                     data.forEach(element => {
                         sumCount++;
                         sumFangliang = sumFangliang + parseInt(element.RealFangliang)
-                        if (map.has(element.startYear)) {
-                            let obj = map.get(element.startYear);
+                        let sYear = parseInt(element.startYear)
+                        if (map.has(sYear)) {
+                            let obj = map.get(sYear);
                             obj.sum1++;
                             obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
-                            map.set(element.startYear, {
+                            map.set(sYear, {
                                 sum1: c,
                                 sum2: f,
-                                project: element.startYear,
-                                projectName: `${element.startYear}年`
+                                project: sYear,
+                                projectName: `${sYear}年`
                             })
                         }
                     });
@@ -116,17 +117,18 @@ export default {
                     data.forEach(element => {
                         sumCount++;
                         sumFangliang = sumFangliang + parseInt(element.RealFangliang)
-                        if (map.has(element.startMonth)) {
-                            let obj = map.get(element.startMonth);
+                        let sMonth = parseInt(element.startMonth)
+                        if (map.has(sMonth)) {
+                            let obj = map.get(sMonth);
                             obj.sum1++;
                             obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
-                            map.set(element.startMonth, {
+                            map.set(sMonth, {
                                 sum1: c,
                                 sum2: f,
-                                project: element.startMonth,
-                                projectName: `${element.startMonth}月`
+                                project: sMonth,
+                                projectName: `${sMonth}月`
                             })
                         }
                     });
@@ -138,20 +140,22 @@ export default {
                     data.forEach(element => {
                         sumCount++;
                         sumFangliang = sumFangliang + parseInt(element.RealFangliang)
-                        if (map.has(element.startDay)) {
-                            let obj = map.get(element.startDay);
+                        let sDay = parseInt(element.startDay)
+                        if (map.has(sDay)) {
+                            let obj = map.get(sDay);
                             obj.sum1++;
                             obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
-                            map.set(element.startDay, {
+                            map.set(sDay, {
                                 sum1: c,
                                 sum2: f,
-                                project: element.startDay,
-                                projectName: `${element.startDay}号`
+                                project: sDay,
+                                projectName: `${sDay}号`
                             })
                         }
                     });
+
 
                     break;
                 case "sj":
@@ -178,17 +182,43 @@ export default {
                     break;
             }
 
-            map.set('合计', {
+            this.list = [...map.values()]
+
+            if (this.type === 'sj') {
+                this.list.sort((p1, p2) => {
+                    return p2.sum1 - p1.sum1
+                })
+            }
+
+            if (this.type === 'dd') {
+                this.list.sort((p1, p2) => {
+                    return p1.project - p2.project
+                })
+            }
+
+
+
+            this.list.push({
                 sum1: sumCount,
                 sum2: sumFangliang,
                 project: '合计',
                 projectName: `合计`
             })
 
-            this.list = [...map.values()]
+            // map.set('合计', {
+            //     sum1: sumCount,
+            //     sum2: sumFangliang,
+            //     project: '合计',
+            //     projectName: `合计`
+            // })
+
+
 
         },
         refresh() {
+
+            this.$store.commit('showLoading')
+
             let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
 
             let where = {};
@@ -234,17 +264,20 @@ export default {
                     this.$handleRequest(info.data).then(
                         sucess => {
                             this.groupTransInfo(sucess);
+                            this.$store.commit('hideLoading')
                         },
                         fail => {
-
+                            this.$store.commit('hideLoading')
                         }
                     )
                 },
                     (fail) => {
                         console.log(fail)
+                        this.$store.commit('hideLoading')
                     })
                 .catch((err) => {
                     console.log(`网络请求超时！${err}`);
+                    this.$store.commit('hideLoading')
                 });
         }
     },
@@ -260,7 +293,7 @@ export default {
     mounted() {
         this.refresh();
     },
-    activated(){
+    activated() {
         this.refresh();
     }
 }

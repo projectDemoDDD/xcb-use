@@ -7,8 +7,8 @@ module.exports = defineConfig({
   //取消eslint语法检查
   lintOnSave: false,
   devServer: {
-    //host: '192.168.43.95',
-     host: '192.168.2.101',
+    host: '192.168.43.95',
+    // host: '192.168.2.101',
     port: '8080',
     proxy: {
       '/userInfo': {

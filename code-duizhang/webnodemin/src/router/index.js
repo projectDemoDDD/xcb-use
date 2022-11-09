@@ -22,6 +22,7 @@ import DataEditor from "./queueManager/dataEditor";
 import HntTypeEditor from "./queueManager/hntTypeEditor";
 import StartLocationEditor from "./queueManager/startLocationEditor";
 import OutInGroupDetailStatic from "./moneyManager/outInGroupDetailStatic";
+import DetailView from "./moneyManager/detailView";
 
 export default new VueRouter({
     routes: [
@@ -139,6 +140,11 @@ export default new VueRouter({
             name: "outInGroupDetailStatic",
             path: "/outInGroupDetailStatic",
             component: OutInGroupDetailStatic
+        },
+        {
+            name: "detailView",
+            path: "/detailView",
+            component: DetailView
         }
     ]
 })

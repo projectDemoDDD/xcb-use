@@ -25,7 +25,7 @@ router.post('/getInfo', (req, res) => {
         }
 
 
-        getDatas(doc.collectionName, {}).then(
+        getDatas(doc.collectionName, doc.content).then(
             data => {
                 if (data == null || data == '') {
                     res.status(200).send("data-null");

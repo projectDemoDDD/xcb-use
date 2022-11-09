@@ -40,7 +40,7 @@
                 <div class="cell">{{ item.RealName }}</div>
                 <div class="cell">{{ item.comment }}</div>
             </li>
-            <hr/>
+            <hr />
             <li v-for="(item, i) in  carWaitList" class="row">
                 <!-- <div class="cell">{{ item.index }}</div> -->
                 <div class="cell">{{ item.CarNumber }}</div>
@@ -50,7 +50,7 @@
                 <div class="cell">{{ item.RealName }}</div>
                 <div class="cell">{{ item.comment }}</div>
             </li>
-            <hr/>
+            <hr />
             <li v-for="(item, i) in  carToGongdiList" class="row">
                 <!-- <div class="cell">{{ item.index }}</div> -->
                 <div class="cell">{{ item.CarNumber }}</div>
@@ -60,7 +60,7 @@
                 <div class="cell">{{ item.RealName }}</div>
                 <div class="cell">{{ item.comment }}</div>
             </li>
-            <hr/>
+            <hr />
             <li v-for="(item, i) in  carWaitOffList" class="row">
                 <!-- <div class="cell">{{ item.index }}</div> -->
                 <div class="cell">{{ item.CarNumber }}</div>
@@ -70,7 +70,7 @@
                 <div class="cell">{{ item.RealName }}</div>
                 <div class="cell">{{ item.comment }}</div>
             </li>
-            <hr/>
+            <hr />
             <li v-for="(item, i) in  carOffingList" class="row">
                 <!-- <div class="cell">{{ item.index }}</div> -->
                 <div class="cell">{{ item.CarNumber }}</div>
@@ -80,7 +80,7 @@
                 <div class="cell">{{ item.RealName }}</div>
                 <div class="cell">{{ item.comment }}</div>
             </li>
-            <hr/>
+            <hr />
             <li v-for="(item, i) in  carBackList" class="row">
                 <!-- <div class="cell">{{ item.index }}</div> -->
                 <div class="cell">{{ item.CarNumber }}</div>
@@ -103,6 +103,11 @@ export default {
             this.getCarStateList();
         },
         getCarStateList() {
+
+            if (this.isFirst) {
+                this.$store.commit('showLoading')
+            }
+
             let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
             let cars = [];
             user.cars.forEach(element => {
@@ -221,21 +226,44 @@ export default {
                                 return Date.parse(p1.RecordTime) - Date.parse(p2.RecordTime)
                             })
 
+                            if (this.isFirst) {
+                                this.$store.commit('hideLoading')
+                                this.isFirst = false;
+                            }
+
+
                         },
                         fail => {
                             this.carStateList = [];
                             console.log("获取车辆状态列表失败了！")
+                            if (this.isFirst) {
+                                this.$store.commit('hideLoading')
+                                this.isFirst = false;
+                            }
                         }
                     )
                 },
-                    (fail) => { console.log(fail) })
+                    (fail) => {
+                        console.log(fail)
+                        if (this.isFirst) {
+                            this.$store.commit('hideLoading')
+                            this.isFirst = false;
+                        }
+                    })
                 .catch((err) => {
                     console.log(`网络请求超时！${err}`);
+                    if (this.isFirst) {
+                        this.$store.commit('hideLoading')
+                        this.isFirst = false;
+                    }
                 });
         }
     },
     data() {
         return {
+
+            isFirst: true,
+
             sumCount: 0,
             restCount: 0,
             waitTaskCount: 0,
@@ -258,6 +286,7 @@ export default {
         }
     },
     created() {
+        this.isFirst = true;
         this.refresh()
         this.timer = setInterval(this.refresh, 2000);
     },
