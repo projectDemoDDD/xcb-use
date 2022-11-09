@@ -198,6 +198,7 @@ export default {
                 content: {
                     UserName: user.UserName,
                     RealName: user.RealName,
+                    CarNumber: this.carNumber,
                     content: info,
                     operationTime: this.$getCurrentTime().time
                 }
@@ -407,7 +408,7 @@ export default {
         //更新报站数据
         sayStationUpdateData() {
             this.$store.commit('showLoading')
-            
+
             let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
             let stateInfo = {
                 where: {
@@ -843,12 +844,12 @@ export default {
                         type: '',
                         RecordTime: this.$getCurrentTime().time,
 
-                        sayStationTime:'',
-                        leaveStationTime:'',
-                        arrivalTime:'',
-                        startOffTime:'',
-                        offCompleteTime:'',
-                        backTime:''
+                        sayStationTime: '',
+                        leaveStationTime: '',
+                        arrivalTime: '',
+                        startOffTime: '',
+                        offCompleteTime: '',
+                        backTime: ''
                     }
                 }
             };

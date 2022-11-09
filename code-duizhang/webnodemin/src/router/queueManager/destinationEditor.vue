@@ -97,38 +97,62 @@ export default {
             this.currentItem.content = ''
             this.currentItem.content1 = ''
             this.currentItem.content2 = ''
+            this.currentItem.minFangliang = '10'
             this.currentItem.type = 'end'
             this.currentItem.isAdd = true;
         },
         deleteItem(item) {
 
-            let where = {
-                content: item.content,
-                content1: item.content1,
-                content2: item.content2
-            }
-
-            this.$http.get(`/dicInfoDelete?where=${JSON.stringify(where)}`).then(
-                (scucess) => {
-                    switch (scucess.data) {
-                        case "where-undefined":
-                            console.log("where-undefined");
-                            break;
-                        case "success":
-                            this.getList();
-                            break;
-                        case "dataBase-error":
-                            console.log("dataBase-error");
-                            break;
-                        case "server-undefinedError":
-                            console.log("server-undefinedError");
-                            break;
-                    }
+            let stateInfo = {
+                collectionName: 'dicInfo',
+                where: {
+                    content: item.content,
+                    content1: item.content1,
+                    content2: item.content2,
+                    type: 'end'
                 },
-                (fail) => {
-                    console.log("网络请求超时！");
+                content: {
+                    $set: {
+                        delete: 'true'
+                    }
                 }
-            );
+            };
+
+            this.$http.post("/updateInfo", stateInfo).then((scucess) => {
+                this.getList();
+            }, (fail) => {
+                console.log(fail);
+            });
+
+
+
+            // let where = {
+            //     content: item.content,
+            //     content1: item.content1,
+            //     content2: item.content2
+            // }
+
+            // this.$http.get(`/dicInfoDelete?where=${JSON.stringify(where)}`).then(
+            //     (scucess) => {
+            //         switch (scucess.data) {
+            //             case "where-undefined":
+            //                 console.log("where-undefined");
+            //                 break;
+            //             case "success":
+            //                 this.getList();
+            //                 break;
+            //             case "dataBase-error":
+            //                 console.log("dataBase-error");
+            //                 break;
+            //             case "server-undefinedError":
+            //                 console.log("server-undefinedError");
+            //                 break;
+            //         }
+            //     },
+            //     (fail) => {
+            //         console.log("网络请求超时！");
+            //     }
+            // );
         },
         modifyItem(item) {
             this.oragionSelectedItem = item;
@@ -174,23 +198,27 @@ export default {
                             this.list = [];
                             let map = new Map();
                             success.forEach(element => {
-                                if (map.has(element.content1)) {
-                                    let obj = map.get(element.content1);
-                                    obj.push({
-                                        content: element.content,
-                                        content1: element.content1,
-                                        content2: element.content2
-                                    })
-                                } else {
-                                    let obj = [
-                                        {
+                                if (element.delete != 'true') {
+                                    if (map.has(element.content1)) {
+                                        let obj = map.get(element.content1);
+                                        obj.push({
                                             content: element.content,
                                             content1: element.content1,
                                             content2: element.content2
-                                        }
-                                    ]
-                                    map.set(element.content1, obj);
+                                        })
+                                    } else {
+                                        let obj = [
+                                            {
+                                                content: element.content,
+                                                content1: element.content1,
+                                                content2: element.content2
+                                            }
+                                        ]
+                                        map.set(element.content1, obj);
+                                    }
                                 }
+
+
                             });
                             map.forEach(key => {
                                 let array = [...key];

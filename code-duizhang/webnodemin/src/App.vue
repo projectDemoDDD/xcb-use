@@ -15,15 +15,47 @@ export default {
   name: 'App',
   components: {
   },
-  computed:{
-    isShow(){
+  computed: {
+    isShow() {
       return this.$store.state.isShow;
     }
   },
   methods: {
-    full() {
-      screenfull.toggle()
+    getDictList(type) {
+      //定义条件
+      let where = {
+        type: type
+      };
+      //发送请求
+      this.$http
+        .get(`/dicInfoQuerys?where=${JSON.stringify(where)}`)
+        .then((info) => {
+          //服务器只要接到请求就会返回200成功
+          this.$handleRequest(info.data).then(
+            success => {
+              // DestinateInfoKey
+              //window.localStorage.setItem(this.$DestinateInfoKey, JSON.stringify(success));
+             
+              success.forEach(element => {
+                this.$destination.set(element.content, element);
+              });
+              //alert(JSON.stringify(...this.$destination.values()))
+            },
+            fail => {
+              this.list = [];
+              console.log("获取车辆状态列表失败了！")
+            }
+          )
+        },
+          (fail) => { console.log(fail) })
+        .catch((err) => {
+          console.log(`网络请求超时！${err}`);
+        });
     }
+  },
+  created() {
+    //获取目的地信息
+    this.getDictList('end')
   }
 }
 </script>
@@ -194,7 +226,7 @@ button {
   align-items: center;
 }
 
-.loadingHidden{
+.loadingHidden {
   display: none;
 }
 

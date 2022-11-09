@@ -58,7 +58,7 @@
       </div>
       <div class="row">
         <div class="cell">
-          <button @click="updateProfile">修改</button>
+          <button @click="updateProfile" class="modifyBtn">修改</button>
         </div>
       </div>
     </div>
@@ -157,13 +157,18 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
 .profileSettingRoot .table button {
   visibility: hidden;
 }
 
 .profileSettingRoot .table .row:last-child button {
   visibility: visible;
+}
+
+.modifyBtn{
+  background-color: red;
+  color: white;
 }
 
 /* .profileSettingRoot .table .row:nth-child(3) button {

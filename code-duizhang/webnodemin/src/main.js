@@ -22,7 +22,7 @@ import Axios from 'axios'
 //Axios.defaults.baseURL='127.0.0.1:5000'
 var $http = Axios
 Vue.prototype.$http = $http
-
+Vue.prototype.$destination = new Map();
 
 
 Vue.prototype.$handleRequest = function (data) {
@@ -139,6 +139,7 @@ Vue.prototype.$getCurrentTime = function () {
 }
 
 Vue.prototype.$UserInfoKey = 'UserInfo'
+Vue.prototype.$DestinateInfoKey = 'DestinateInfo'
 
 Vue.use(PubSub)
 //Vue.use(ElementUI);

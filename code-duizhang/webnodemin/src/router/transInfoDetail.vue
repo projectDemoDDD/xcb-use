@@ -66,34 +66,39 @@
                     <div>{{ item.type }}</div>
                 </div>
                 <div class="cell" :class="scondContentVisibleCompute">
-                    <div>
+                    <!-- <div>
                         {{ item.leaveStationTime === '' || item.leaveStationTime === undefined ? '' :
                                 item.leaveStationTime.substring(9)
-                        }}</div>
+                        }}</div> -->
+                        <div>{{ item.leaveStationTime }}</div>
                 </div>
                 <div class="cell" :class="scondContentVisibleCompute">
-                    <div>{{ item.arrivalTime === '' || item.arrivalTime === undefined ? '' :
+                    <!-- <div>{{ item.arrivalTime === '' || item.arrivalTime === undefined ? '' :
                             item.arrivalTime.substring(9)
-                    }}</div>
+                    }}</div> -->
+                    <div>{{ item.arrivalTime }}</div>
                 </div>
 
 
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.startOffTime === '' || item.startOffTime === undefined ? '' :
+                    <!-- <div>{{ item.startOffTime === '' || item.startOffTime === undefined ? '' :
                             item.startOffTime.substring(9)
-                    }}</div>
+                    }}</div> -->
                     <!-- <div>{{ item.startOffTime.substring(9) }}</div> -->
+                    <div>{{ item.startOffTime }}</div>
                 </div>
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.offCompleteTime === '' || item.offCompleteTime === undefined ? '' :
+                    <!-- <div>{{ item.offCompleteTime === '' || item.offCompleteTime === undefined ? '' :
                             item.offCompleteTime.substring(9)
-                    }}</div>
+                    }}</div> -->
                     <!-- <div>{{ item.offCompleteTime.substring(9) }}</div> -->
+                    <div>{{ item.offCompleteTime }}</div>
                 </div>
                 <div class="cell" :class="thirdContentVisibleCompute">
-                    <div>{{ item.backTime === '' || item.backTime === undefined ? '' : item.backTime.substring(9) }}
-                    </div>
+                    <!-- <div>{{ item.backTime === '' || item.backTime === undefined ? '' : item.backTime.substring(9) }}
+                    </div> -->
                     <!-- <div>{{ item.backTime.substring(9) }}</div> -->
+                    <div>{{ item.backTime }}</div>
                 </div>
 
             </div>
@@ -118,7 +123,6 @@ export default {
     },
     methods: {
         switchDisplayContent() {
-            console.log(this.displayCurrentIndex)
             this.displayContentIndexCount++;
             this.displayCurrentIndex = this.displayContentIndexCount % 3;
             console.log(this.displayCurrentIndex)
@@ -127,12 +131,33 @@ export default {
 
             this.$store.commit('showLoading')
 
-            let where = {
-                startYear: this.$route.query.year,
-                startMonth: this.$route.query.month,
-                startDay: this.$route.query.day,
-                UserName: this.$route.query.UserName
-            };
+            let where = {};
+
+            if (this.$route.query.DestinatLocation != '' && this.$route.query.DestinatLocation != undefined) {
+                where = {
+                    DestinatLocation: this.$route.query.DestinatLocation
+                }
+            } else {
+                where = {
+                    startYear: this.$route.query.year,
+                    startMonth: this.$route.query.month,
+                    startDay: this.$route.query.day,
+                    UserName: this.$route.query.UserName
+                }
+            }
+
+            //判断所属车辆
+            let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
+            let cars = [];
+            if (user.cars != undefined && user.cars != null) {
+                user.cars.forEach(element => {
+                    cars.push({ CarNumber: element })
+                })
+            }
+
+            if (cars.length > 0) {
+                where.$or = cars;
+            }
 
 
             //发送请求

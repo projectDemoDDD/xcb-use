@@ -2,7 +2,7 @@
     <div class="selectionRoot">
         <div class="table">
             <div class="row">
-                <div class="cell" v-for="(item, i) in lists">
+                <div class="cell" :class="cellStyle" v-for="(item, i) in lists">
                     <input type="radio" :id="i" v-model="selectedValue" :value="item.value" name="c" />
                     <label :for="i">{{ item.value }}</label>
                 </div>
@@ -23,7 +23,8 @@ export default {
     data() {
         return {
             selectedValue: '',
-            lists: []
+            lists: [],
+            cellStyle: ''
         }
     },
     mounted() {
@@ -41,6 +42,7 @@ export default {
                 where.type = 'start'
                 break;
             case 'end':
+                this.cellStyle = 'destinate'
                 url = '/dicInfoQuerys';
                 where.type = 'end';
                 where.content1 = this.$route.query.currentStartLocation;
@@ -185,9 +187,11 @@ export default {
                             break;
                         case 'end':
                             data.forEach(element => {
-                                let item = {}
-                                item.value = element.content;
-                                this.lists.push(item)
+                                if (element.delete != 'true') {
+                                    let item = {}
+                                    item.value = element.content;
+                                    this.lists.push(item)
+                                }
                             });
                             break;
                         case 'type':
@@ -221,5 +225,9 @@ export default {
 .selectionRoot .table .row .cell {
     margin-left: 2vw;
 }
+/* 
+.destinate {
+    margin-top: 2vw;
+} */
 </style>
   

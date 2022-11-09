@@ -20,10 +20,10 @@
                     <div>{{ item.projectName }}</div>
                 </div>
                 <div class="cell">
-                    <div>{{ item.sum1 }}</div>
+                    <div>{{ item.sum1 }} 车</div>
                 </div>
                 <div class="cell">
-                    <div>{{ item.sum2 }}</div>
+                    <div>{{ item.sum2 }} 方</div>
                 </div>
             </div>
         </div>
@@ -93,12 +93,12 @@ export default {
                     //不用传参 所有的记录 按年分组
                     data.forEach(element => {
                         sumCount++;
-                        sumFangliang = sumFangliang + parseInt(element.RealFangliang)
+                        sumFangliang = sumFangliang + parseFloat(element.RealFangliang)
                         let sYear = parseInt(element.startYear)
                         if (map.has(sYear)) {
                             let obj = map.get(sYear);
                             obj.sum1++;
-                            obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
+                            obj.sum2 = parseFloat(obj.sum2) + parseFloat(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
                             map.set(sYear, {
@@ -116,12 +116,12 @@ export default {
 
                     data.forEach(element => {
                         sumCount++;
-                        sumFangliang = sumFangliang + parseInt(element.RealFangliang)
+                        sumFangliang = sumFangliang + parseFloat(element.RealFangliang)
                         let sMonth = parseInt(element.startMonth)
                         if (map.has(sMonth)) {
                             let obj = map.get(sMonth);
                             obj.sum1++;
-                            obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
+                            obj.sum2 = parseFloat(obj.sum2) + parseFloat(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
                             map.set(sMonth, {
@@ -139,12 +139,12 @@ export default {
 
                     data.forEach(element => {
                         sumCount++;
-                        sumFangliang = sumFangliang + parseInt(element.RealFangliang)
+                        sumFangliang = sumFangliang + parseFloat(element.RealFangliang)
                         let sDay = parseInt(element.startDay)
                         if (map.has(sDay)) {
                             let obj = map.get(sDay);
                             obj.sum1++;
-                            obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
+                            obj.sum2 = parseFloat(obj.sum2) + parseFloat(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
                             map.set(sDay, {
@@ -163,11 +163,11 @@ export default {
 
                     data.forEach(element => {
                         sumCount++;
-                        sumFangliang = sumFangliang + parseInt(element.RealFangliang)
+                        sumFangliang = sumFangliang + parseFloat(element.RealFangliang)
                         if (map.has(element.UserName)) {
                             let obj = map.get(element.UserName);
                             obj.sum1++;
-                            obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
+                            obj.sum2 = parseFloat(obj.sum2) + parseFloat(element.RealFangliang);
                         } else {
                             f = element.RealFangliang
                             map.set(element.UserName, {
@@ -205,13 +205,20 @@ export default {
                 projectName: `合计`
             })
 
-            // map.set('合计', {
-            //     sum1: sumCount,
-            //     sum2: sumFangliang,
-            //     project: '合计',
-            //     projectName: `合计`
-            // })
+            let day = this.$getCurrentTime().dd
 
+
+            let user = JSON.parse(window.localStorage.getItem(this.$UserInfoKey));
+            let carCount = user.cars.length;
+
+            if (this.type === 'dd') {
+                this.list.push({
+                    sum1: (sumCount / day / carCount).toFixed(2),
+                    sum2: (sumFangliang / day / carCount).toFixed(2),
+                    project: `平均每辆车一天(${carCount}辆)`,
+                    projectName: `平均每辆车一天(${carCount}辆)`
+                })
+            }
 
 
         },

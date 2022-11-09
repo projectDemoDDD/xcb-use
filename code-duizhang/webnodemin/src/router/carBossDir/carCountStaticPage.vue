@@ -10,7 +10,10 @@
                     <div>车次</div>
                 </div>
                 <div class="cell">
-                    <div>方量</div>
+                    <div>票面方量</div>
+                </div>
+                <div class="cell">
+                    <div>结算方量(补方)</div>
                 </div>
             </div>
             <div v-for="(item, i) in list" class="row">
@@ -25,6 +28,9 @@
                         <div class="cell">
                             <div>{{ item.sum2 }}</div>
                         </div>
+                        <div class="cell">
+                            <div>{{ item.finalSumFangliang }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -33,7 +39,6 @@
 </template>
   
 <script>
-
 export default {
     name: 'carCountStaticPage',
     methods: {
@@ -43,8 +48,16 @@ export default {
             this.refresh();
         },
         rowClick(item) {
-            if (this.startLocation != undefined && this.startLocation != '')
+            if (this.startLocation != undefined && this.startLocation != '') {
+                this.$router.push({
+                    name: 'transInfoDetail',
+                    query: {
+                        DestinatLocation: item.projectName
+                    }
+                })
                 return;
+            }
+
             this.startLocation = item.projectName;
             this.groupName = 'DestinatLocation'
             this.refresh();
@@ -62,63 +75,48 @@ export default {
             let f = 0;
             let sumCount = 0;
             let sumFangliang = 0;
+            let finalSumFangliang = 0;
 
             let gName = this.groupName
             if (gName === '' || gName === undefined) {
                 gName = this.$route.query.groupName
             }
 
+
             data.forEach(element => {
-                f = element.RealFangliang
                 sumCount++;
-                sumFangliang = sumFangliang + parseInt(element.RealFangliang)
+                let realFanlgiang = parseFloat(element.RealFangliang)
+
+                //获取最小方量值以及结算方量
+                let destiante = this.$destination.get(element.DestinatLocation)
+                let minFangliang = 0
+                if (destiante != undefined && destiante.minFangliang != undefined) {
+                    minFangliang = parseFloat(destiante.minFangliang)
+                }
+                let jiesuanFl = minFangliang > realFanlgiang ? minFangliang : realFanlgiang
+                finalSumFangliang = finalSumFangliang + jiesuanFl
+
+                sumFangliang = sumFangliang + realFanlgiang
+
                 if (map.has(element[gName])) {
+
                     let obj = map.get(element[gName]);
                     obj.sum1++;
-                    obj.sum2 = parseInt(obj.sum2) + parseInt(element.RealFangliang);
-
-                    if (obj.itemsMap.has(element.startMonth)) {
-                        let nexItem = obj.itemsMap.get(element.startMonth);
-                        nexItem.sum1++;
-                        nexItem.sum2 = parseInt(nexItem.sum2) + parseInt(element.RealFangliang);
-                    } else {
-                        obj.itemsMap = new Map();
-                        obj.itemsMap.set(element.startMonth, {
-                            sum1: 1,
-                            sum2: f,
-                            project: element.startMonth,
-                            projectName: `${element.startMonth}月份`,
-                        })
-                    }
+                    obj.sum2 = obj.sum2 + realFanlgiang;
+                    obj.finalSumFangliang = obj.finalSumFangliang + jiesuanFl;
 
                 } else {
 
                     map.set(element[gName], {
                         sum1: c,
-                        sum2: f,
+                        sum2: realFanlgiang,
+                        finalSumFangliang: jiesuanFl,
                         project: element[gName],
                         projectName: `${element[gName]}`,
-                        itemsMap: new Map().set(element.startMonth, {
-                            sum1: 1,
-                            sum2: f,
-                            project: element.startMonth,
-                            projectName: `${element.startMonth}月份`,
-                        }),
                         items: []
                     })
                 }
             });
-
-            map.forEach((item, index) => {
-                item.items = [...item.itemsMap.values()]
-            })
-
-            // map.set('合计', {
-            //     sum1: sumCount,
-            //     sum2: sumFangliang,
-            //     project: '合计',
-            //     projectName: `合计`
-            // })
 
             this.list = [...map.values()]
 
@@ -126,9 +124,11 @@ export default {
                 return p2.sum2 - p1.sum2
             })
 
+
             this.list.push({
                 sum1: sumCount,
                 sum2: sumFangliang,
+                finalSumFangliang: finalSumFangliang,
                 project: '合计',
                 projectName: `合计`
             })
